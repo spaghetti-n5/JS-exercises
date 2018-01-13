@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <html lang="en-US">
+  <meta charset="UTF-8">
+  <title>Calculator</title>
+
+  <!--css style-->
+  <style>
+
+  .calculator {
+    width: 280px;
+    height: 400px;
+    background-color: #003333;
+    border-radius: 8px;
+  }
+
+  .btnContainer {
+    text-align: center;
+    margin-top: 10px;
+  }
+
+  .button {
+    height: 40px;
+    width: 40px;
+    background-color: Silver;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 18px;
+    font-weight: bold;
+    margin: 7px 3px;
+    cursor: pointer;
+  }
+
+  .operator {
+    background-color: #009999;
+  }
+
+  .special {
+    background-color: #ff6666;
+  }
+
+  .displayContainer{
+    width: 230px;
+    height: 40px;
+    display: inline-block;
+    text-align: center;
+    background-color: LightGray;
+    margin: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+  }
+
+  #demo {
+    text-decoration: none;
+    font-size: 20px;
+    font-weight: bold;
+    text-align: right;
+    padding-right: 10px;
+  }
+  </style>
+</head>
+
+<body>
+  <div class="calculator">
+
+    <div class="displayContainer">
+      <p id="demo">0.</p>
+    </div>
+
+    <div class="btnContainer">
+      <input type="button" class="button special" onclick="reset()" value="C">
+      <input type="button" class="button special" onclick="del()" value="CE" />
+      <input type="button" class="button operator" onclick="changeFlag('sqrt')" value="√" />
+      <input type="button" class="button operator" onclick="changeFlag('percentage')" value="%" /><br />
+
+      <input type="button" class="button" onclick="readValue(7)" value="7">
+      <input type="button" class="button" onclick="readValue(8)" value="8">
+      <input type="button" class="button" onclick="readValue(9)" value="9">
+      <input type="button" class="button operator" onclick="changeFlag('division')" value="/"><br />
+
+      <input type="button" class="button" onclick="readValue(4)" value="4">
+      <input type="button" class="button" onclick="readValue(5)" value="5">
+      <input type="button" class="button" onclick="readValue(6)" value="6">
+      <input type="button" class="button operator" onclick="changeFlag('multip')" value="*"><br />
+
+      <input type="button" class="button" onclick="readValue(1)" value="1">
+      <input type="button" class="button" onclick="readValue(2)" value="2">
+      <input type="button" class="button" onclick="readValue(3)" value="3">
+      <input type="button" class="button operator" onclick="changeFlag('minus')" value="-"><br />
+
+      <input type="button" class="button" onclick="readValue(0)" value="0" />
+      <input type="button" class="button" onclick="addComma()" value="." />
+      <input type="button" class="button special" onclick="result()" value="=" />
+      <input type="button" class="button operator" onclick="changeFlag('plus')" value="+"/>
+    </div>
+  </div>
+
+<script>
+var n1 = "";
+var n2 = "0";
+var operator = "";
+var flag = true;
+var comma = false;
+
+function readValue (val) {
+  if (flag == true) {
+      n1 = n1 + val;
+      document.getElementById("demo").innerHTML = n1;
+    //  console.log(val);
+      //console.log(n1);
+  }else {
+      n2 = n2 + val;
+      document.getElementById("demo").innerHTML = n2;
+      //console.log(n2);
+  }
+  }
+
+  function addComma(){
+    comma = true;
+    n1 = n1 + ".";
+    console.log(comma);
+    //console.log(n1);
+    document.getElementById("demo").innerHTML = n1;
+}
+
+  //change the referring variable called flag to another value, that means it takes now
+  //the second number//
+  function changeFlag(operation){
+    flag = false;
+    operator = operation;
+  }
+
+  function result() {
+    var result;
+    if(operator == "plus"){
+      if (comma == false){
+          result = parseInt(n1) + parseInt(n2);
+      }
+      else{
+        var intermedio = 0;
+        d1 = parseInt(n1.split(".")[0]);
+        d2 = parseInt(n1.split(".")[1]);
+        intermedio = d1 + parseInt(n2);
+        result = intermedio + "." + d2;
+        console.log("mis numeros");
+        console.log(d1);
+        console.log(d2);
+        console.log(intermedio);
+      }
+
+    }else if (operator == "minus") {
+      result = n1 - n2;
+    }else if (operator == "multip") {
+      result = n1 * n2;
+    }else if (operator == "division") {
+      result = n1 / n2;
+    }
+    document.getElementById("demo").innerHTML = result;
+  }
+
+  function reset () {
+    d1 = "";
+    d2 = "";
+    n1 = 0;
+    n2 = 0;
+    flag = true;
+    operator = "";
+    result = 0;
+    document.getElementById("demo").innerHTML = "0";
+  }
+</script>
+
+</body>
+</html>
