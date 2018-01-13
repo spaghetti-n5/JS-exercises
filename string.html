@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta lang="en-US" />
+  <meta name="description" content="text area with different buttons to modify the text" />
+  <meta name="author" content="Eleonora" />
+  <title>Text processor</title>
+</head>
+<body>
+  <p>Insert the text you want to modify here:</p>
+  <!--The <textarea> tag defines a multi-line text input control.
+  I can access the text area calling the element by id and as a classic input field I have to
+  get the .value of the element.-->
+  <textarea id="text" name="text field" rows="10" cols="100" maxlength="5000">Insert the text here</textarea> <br />
+  <!--When calling the function I have to specify the variable because is a value given by the user 'txt'-->
+  <input type="button" onclick="counter('txt')" value="Count" />
+  <input type="button" onclick="loud('txt')" value="To upper case" />
+  <input type="button" onclick="calm('txt')" value="To lower case"  />
+  <input type="button" onclick="capitalize('txt')" value="Capital letter"  />
+  <input type="button" onclick="translator('txt')" value="Translate" />
+  <input type="button" onclick="censor('txt')" value="Censor" />
+  <input type="button" onclick="hype('txt')" value="Hype" />
+
+  <br />
+  <p id="demo"></p>
+
+  <script>
+  //function counter(): it will output the number of words and characters that the text has.//
+  var txt = "";
+  var nChar = 0;
+  var nWords = 1;
+  var i;
+  function counter(txt) {
+    txt = document.getElementById("text").value;
+    nChar = txt.length;
+    for (i = 0; i < nChar; i++) {
+      if (txt.charAt(i) == " ") {
+        nWords = nWords + 1;
+      }else {
+        nWords = nWords;
+      }
+      //console.log(i);//
+      //console.log(txt.charAt(i));//
+      //console.log(nWords);//
+        }
+      document.getElementById("demo").innerHTML = "The number of charachters in the text is " + nChar + "" +
+      " and the number of words in the text is " + nWords;
+    }
+
+    //function loud(): it will transform all characters to capital letters.
+    function loud(txt) {
+      txt = document.getElementById("text").value;
+      txt = txt.toUpperCase();
+      document.getElementById("text").value = txt;
+    }
+
+    //function calm(): it will transform all characters to non-capital letters.
+    function calm(txt) {
+      txt = document.getElementById("text").value;
+      txt = txt.toLowerCase();
+      document.getElementById("text").value = txt;
+    }
+
+    /*function capitalize(): it will put capital letter to the first character of the first word,
+    and to each on the characters after a dot*/
+    //.charAt() Returns the character at the specified index (position)//
+    var fLetter = "";
+    var letterUp = "";
+    var nuovo = "";
+    function capitalize(txt){
+      txt = document.getElementById("text").value;
+      nChar = txt.length;
+      fLetter = txt.charAt(0).toUpperCase();
+      nuovo = nuovo + fLetter;
+      for (i = 1; i < nChar; i++) {
+        if (txt.charAt(i-2) == "."){
+          letterUp = txt.charAt(i).toUpperCase();
+          nuovo = nuovo + letterUp;
+        }else{
+          nuovo = nuovo + txt.charAt(i);
+        }
+      console.log(fLetter);
+      console.log(i);
+      console.log(letterUp);
+      console.log(nuovo);
+      }
+      document.getElementById("text").value = nuovo;
+    }
+
+    //function translator(): it will replace the words (if present)"Vybz Kartel" for "World Boss".//
+    function translator(txt) {
+      txt = document.getElementById("text").value;
+      txt = txt.replace("Vybz Kartel","World Boss");
+      document.getElementById("text").value = txt;
+    }
+
+    /*function censor(): it will remove from the input (if present)the next words:
+    reggaeton, pussy, "Gregory Isaacs"*/
+    function censor(txt){
+      txt = document.getElementById("text").value;
+      txt = txt.replace(/reggaeton/gi,"").replace(/pussy/gi,"").replace(/Gregory Isaacs/gi,"");
+      //or txt = txt.replace(/reggaeton|pussy|Gregory Isaacs/gi,"");
+      document.getElementById("text").value = txt;
+    }
+
+    /*function hype(): it will output the word in the text which appears more times,
+    as well as the number of times it appears.*/
+    //The split() method is used to split a string into an array of substrings,
+    //and returns the new array.//
+    var a = [];
+    var word = "";
+    var i = 0;
+    var j = 0;
+    var count = 0;
+    var max = 0;
+    function hype(txt){
+      txt = document.getElementById("text").value;
+      a = txt.split(" ");
+      var aLength = a.length;
+      for (i = 0; i < aLength; i++) {
+        //important: count = 0 inside the first loop so the count will start
+        //again from zero when the next loop starts//
+        count = 0;
+          for (j = 0; j < aLength; j++) {
+            if (a[i] == a[j]) {
+              count++;
+              word = a[i];
+            }else {
+              continue;
+            }
+          }
+            if (count > max) {
+              max = count;
+              word = a[i];
+            }
+          }
+          console.log("max words",word);
+          console.log("count",count);
+          document.getElementById("demo").innerHTML = "The word that appears more time in the text is "
+           + word + "" +
+          " and it appears " + count + "" + " times.";
+        }
+  </script>
+
+</body>
+</html>
