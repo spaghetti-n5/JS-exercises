@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <button onclick = "displayDate()">Display the date</button>
+  <button onclick="hideDate()">Hide date</button>
+  <p id = "test"></p>
+
+
+  <script>
+  //var today contains the current date long format//
+  var today = new Date();
+
+  //var weekday (array) contains the day of the week//
+  var weekday = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+  //getDay()is a method applied to the variable today that returns a number of the week between 0 and 6//
+  //after I am getting the value in array the position corresponding to that number]
+  wDay = weekday [today.getDay()];
+
+  //Method .getDate() applied to the variable today returns the number 1 - 31//
+  day = today.getDate();
+
+  //as for the weekday I create an array containing the months 0 - 11//
+  var months  = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  var month = months [today.getMonth()];
+
+  //Method .getFullYear() applied to the variable today to get the year//
+  year = today.getFullYear();
+
+//the method .getMinutes() returns a number :6 not :06 so I add a if statment to add the 0//
+//the 0 is added like a string because if not will add the number 0 to the number .getMinutes()//
+  if (today.getMinutes() < 10) {
+    minutes = "0" + today.getMinutes();
+  } else {
+    minutes = today.getMinutes();
+  }
+
+//I create this funtion to call it onclick with the button//
+  function displayDate() {
+    document.getElementById("test").innerHTML = "Today is: " + wDay + " " + day + " " + month + " " + year +
+    " " + today.getHours() + " : " + minutes;
+  }
+
+  function hideDate() {
+    document.getElementById("test").innerHTML = "";
+  }
+
+  </script>
+
+</body>
+</html>
