@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+
+<p>Input the values inside the array:</p>
+
+<input id="a" type="number" value="" />
+<input id="b" type="number" value="" />
+<input id="c" type="number" value="" />
+<input id="d" type="number" value="" />
+<input id="e" type="number" value="" />
+<input id="f" type="number" value="" /> <br />
+
+<br />
+<button onclick="readDoc('show')">Show the array</button>
+<button onclick="readDoc('sum')">Show the sum of the values in the array</button>
+
+<p id="displayArray"></p>
+<p id="totArray"></p>
+
+<script>
+
+function readDoc (accion) {
+  var a = document.getElementById("a").value;
+  var b = document.getElementById("b").value;
+  var c = document.getElementById("c").value;
+  var d = document.getElementById("d").value;
+  var e = document.getElementById("e").value;
+  var f = document.getElementById("f").value;
+  var numbers = [a, b, c, d, e, f];
+  if (accion == "sum"){
+    sum(numbers);
+  }else if (accion == "show") {
+    showArray(numbers);
+  }
+}
+
+function showArray(numbers) {
+  document.getElementById("displayArray").innerHTML = "The array is: " + numbers;
+  }
+
+function sum(numbers) {
+  var tot = 0;
+  var i;
+  var l = numbers.length;
+  for (i = 0; i < l; i++) {
+    numbers[i]= parseInt (numbers[i]);
+    tot = parseInt (tot);
+    tot = tot + numbers[i];
+    console.log(numbers[i]);
+    }
+      console.log(l);
+  document.getElementById("totArray").innerHTML = "The sum of the values in the array is = " + tot;
+}
+
+</script>
+</body>
+</html>
