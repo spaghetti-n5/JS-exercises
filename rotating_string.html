@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <meta lang="en-US" />
+  <meta name="description" content="Write a JavaScript program to rotate the string 'w3resource' in right
+   direction by removing one letter from the end of the string and attaching it to the front."/>
+  <meta name="keywords" content="JS" />
+  <meta name="author" content="Elenora" />
+  <!--Setting the view port to have responsive pages-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+</head>
+
+<body>
+<p>Write a JavaScript program to rotate the string 'w3resource' in right direction by removing
+  one letter from the end of the string and attaching it to the front.</p>
+<p id="array"></p>
+<p id="rotatedArray"></p>
+
+<script>
+  word = ["w","3","r","e","s","o","u","r","c","e"];
+  document.getElementById("array").innerHTML = "The string to rotate is: " + word.join("");
+
+  //Rotated array x = []//
+  var x = [];
+  wordLen = word.length;
+  //.pop() takes out the last element from the array and insert it into a new array//
+  for (var i = 0; i < wordLen; i++) {
+    x[i] = word.pop();
+  }
+  //.toString() convert the array to a string with commas//
+  //.join("*") covert the array to a string with custom separator//
+  document.getElementById("rotatedArray").innerHTML = "The rotated string is: " + x.join("");
+  console.log(x);
+  console.log(wordLen);
+
+</script>
+</body>
+</html>
