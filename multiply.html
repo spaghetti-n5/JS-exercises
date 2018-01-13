@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <p>Insert two numbers to multiply</p>
+  <!--input fields for the number: important to define value-->
+  <input type="number" id ="a" value = ""/>
+  <input type="number" id ="b" value = ""/>
+  <!--button that onclick call the fucntion multiplicacion()-->
+  <button onclick="multiplicacion()">Multiply</button>
+  <p id="text"></p>
+
+  <script>
+  //Assign the entrance values of the variable before entering the loop. //
+  //Get the VALUE of the input not with .innerHTML, that takes the HTML element input not its value//
+  function multiplicacion() {
+    var m = 0;
+    var a = document.getElementById("a").value;
+    var b = document.getElementById("b").value;
+    //Say that the variables are numbers with the function parseInt()//
+    for (i = 1; i <= b; i++) {
+      a = parseInt (a);
+      b = parseInt (b);
+      m = m + a;
+    }
+    //Print the operation and the value in the console with console.log(variable)//
+    console.log(m);
+    console.log(a);
+    console.log(b);
+    document.getElementById("text").innerHTML = m;
+}
+  </script>
+
+</body>
+</html>
