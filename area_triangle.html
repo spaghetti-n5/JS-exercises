@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+  <body>
+    <p>Insert the base and the height of a triangle</p>
+    <p> Base: </p><input type="number" id="base" value="" />
+    <p> Height: </p><input type="number" id="height" value="" />
+    <button onclick="areaTriangle()">Calulate the area</button>
+    <p id="text"> </p>
+
+    <script>
+    function areaTriangle() {
+       var b = document.getElementById("base").value;
+       var h = document.getElementById("height").value;
+       var area = 0;
+       b = parseInt(b);
+       h = parseInt(h);
+       area = b * h/2;
+       document.getElementById("text").innerHTML = "The area of the triangle is: " + area;
+       console.log(b);
+       console.log(h);
+       console.log(area);
+
+    }
+    </script>
+
+  </body>
+
+</html>
