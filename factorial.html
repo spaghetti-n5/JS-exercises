@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+</head>
+<body>
+  <p>Insert a number to obtain its factorial value:</p>
+  <input type="number" id="a" value="" />
+  <button onclick="factorial()">Calculate</button>
+  <p id="text"></p>
+
+  <script>
+  function factorial(){
+    var r = 1;
+    var a = document.getElementById("a").value;
+    a = parseInt (a);
+    for (i = a; i >= 1; i--) {
+        r = r * i;
+        console.log(i);
+    }
+    console.log (a);
+    console.log (r);
+    document.getElementById("text").innerHTML = "The factorial values is: " + r;
+  }
+  </script>
+</body>
+</html>
